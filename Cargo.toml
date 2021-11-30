@@ -1,0 +1,20 @@
+[package]
+name = "trace-deps"
+version = "0.1.0"
+authors = [
+    "Brandon Konkle <brandon.konkle@formidable.com>",
+    "Formidable Labs <hello@formidable.com",
+]
+edition = "2021"
+
+[dependencies]
+log = "0.4"
+pretty_env_logger = "0.4"
+tokio = { version = "1", features = ["full"] }
+typed-builder = "0.9"
+
+[dev-dependencies]
+fake = { version = "2.4", features = ['derive'] }
+mockall = "0.10.2"
+rand = "0.8"
+testcontainers = "0.12.0"
