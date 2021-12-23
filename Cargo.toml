@@ -8,6 +8,7 @@ authors = [
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0"
 log = "0.4"
 pretty_env_logger = "0.4"
 tokio = { version = "1", features = ["full"] }
@@ -15,6 +16,6 @@ typed-builder = "0.9"
 
 [dev-dependencies]
 fake = { version = "2.4", features = ['derive'] }
-mockall = "0.10.2"
+mockall = "0.11.0"
 rand = "0.8"
 testcontainers = "0.12.0"

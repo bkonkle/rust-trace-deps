@@ -5,3 +5,7 @@ mod trace_file;
 
 #[cfg(test)]
 mod tests;
+
+/// Error macros
+#[macro_use]
+extern crate anyhow;

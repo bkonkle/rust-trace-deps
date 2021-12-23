@@ -1,5 +1,6 @@
+use anyhow::Result;
 use std::path::Path;
-
+use tokio::fs::read_to_string;
 use typed_builder::TypedBuilder;
 
 #[derive(TypedBuilder)]
@@ -20,8 +21,9 @@ pub struct TraceFileOpts {
     include_source_maps: bool,
 }
 
-pub async fn trace_file(opts: TraceFileOpts) -> Box<Path> {
+pub async fn trace_file(opts: TraceFileOpts) -> Result<()> {
     let src_path = opts.src_path;
+    println!("src_path: {}", src_path);
 
     // Parameters
 
@@ -29,7 +31,15 @@ pub async fn trace_file(opts: TraceFileOpts) -> Box<Path> {
     // _extraImports = _extraImports || normalizeExtraImports(extraImports);
 
     // Get source
-    let src_path = Path::new(&src_path).parent().expect("Invalid src_path");
+    let base_dir = Path::new(&src_path)
+        .parent()
+        .ok_or(anyhow!("Invalid src_path"))?;
 
-    Box::new(src_path.to_owned().to_str())
+    println!("base_dir: {:?}", base_dir);
+
+    let src = read_to_string(src_path).await?;
+
+    println!("File source: {}", src);
+
+    Ok(())
 }
